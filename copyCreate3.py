@@ -38,6 +38,13 @@ subprocess.run([
     "."
 ])
 
+subprocess.run([
+    "docker",
+    "cp",
+    f"{args.sourceID}:/create3/build/prefix/bin",
+    "."
+])
+
 # Copy files in lib to rpi-sysroot/lib
 subprocess.run([
     "docker",
@@ -54,6 +61,14 @@ subprocess.run([
     f"{args.destID}:/home/qtpi/rpi-sysroot/usr/"
 ])
 
+subprocess.run([
+    "docker",
+    "cp",
+    "bin",
+    f"{args.destID}:/home/qtpi/rpi-sysroot/usr/"
+])
+
 # Remove lib and include directories
 shutil.rmtree("lib")
 shutil.rmtree("include")
+shutil.rmtree("bin")
